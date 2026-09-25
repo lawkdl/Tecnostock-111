@@ -1,6 +1,6 @@
 <?php
-
-
+// Esta línea es la que realmente "protege" la página: si no hay sesión,
+// verificar_sesion.php redirige a login.php y detiene la ejecución aquí.
 require_once __DIR__ . '/includes/verificar_sesion.php';
 ?>
 <!DOCTYPE html>
@@ -13,23 +13,18 @@ require_once __DIR__ . '/includes/verificar_sesion.php';
 </head>
 <body>
 
-<nav class="navbar navbar-dark bg-dark">
-    <div class="container-fluid">
-        <span class="navbar-brand mb-0 h1">TecnoStock</span>
-        <div class="d-flex align-items-center">
-            <span class="text-white me-3">
-                Hola, <?= htmlspecialchars($_SESSION['nombre_usuario']) ?>
-            </span>
-            <a href="logout.php" class="btn btn-outline-light btn-sm">Cerrar sesión</a>
-        </div>
-    </div>
-</nav>
+<?php require __DIR__ . '/includes/navbar.php'; ?>
 
-<div class="container mt-5">
+<div class="container">
     <h2>Bienvenido al panel de TecnoStock</h2>
-    <p class="text-muted">
-        .
+    <p class="text-muted mb-4">
+        Desde aquí administras el catálogo de productos y el control de
+        existencias.
     </p>
+
+    <a href="productos/listar.php" class="btn btn-primary">
+        Ir al listado de productos
+    </a>
 </div>
 
 </body>

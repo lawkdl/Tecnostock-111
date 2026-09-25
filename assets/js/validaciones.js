@@ -1,21 +1,24 @@
 /**
  * validaciones.js
- * Validación del lado del cliente para dar retroalimentación inmediata.
- * IMPORTANTE: esto es solo comodidad para el usuario. La validación que
- * de verdad protege los datos siempre se repite en PHP (ver procesar_login.php).
+ * Validación del lado del cliente, reutilizable en cualquier formulario
+ * del proyecto: basta con agregarle class="needs-validation" y novalidate.
+ *
+ * IMPORTANTE: esto es solo comodidad para el usuario (feedback inmediato).
+ * La validación que de verdad protege los datos siempre se repite en PHP
+ * (ver guardar.php, actualizar.php, procesar_login.php).
  */
 (function () {
     'use strict';
 
-    const formLogin = document.getElementById('formLogin');
+    const formularios = document.querySelectorAll('form.needs-validation');
 
-    if (formLogin) {
-        formLogin.addEventListener('submit', function (evento) {
-            if (!formLogin.checkValidity()) {
+    Array.prototype.forEach.call(formularios, function (formulario) {
+        formulario.addEventListener('submit', function (evento) {
+            if (!formulario.checkValidity()) {
                 evento.preventDefault();
                 evento.stopPropagation();
             }
-            formLogin.classList.add('was-validated');
-        });
-    }
+            formulario.classList.add('was-validated');
+        }, false);
+    });
 })();
